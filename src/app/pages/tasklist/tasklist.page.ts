@@ -19,21 +19,9 @@ export class TasklistPage implements OnInit {
     title: '',
     status: '',
   };
-  item: Place = {
-    title: 'ff',
-    status: 'open',
-  };
+  
   constructor(private placesService: PlacesService) {
-    /*  this.placesService.get2doList().subscribe((res) => {
-      console.log(res);
-      
-    }); */
-    /*  this.tasks = [
-      { title: 'Milk', status: 'open' },
-      { title: 'Eggs', status: 'open' },
-      { title: 'Syrup', status: 'open' },
-      { title: 'Pancake Mix', status: 'open' },
-    ];  */
+    
 
     this.placesService.get2doList().subscribe((res) => {
       console.log(res);
@@ -48,16 +36,7 @@ export class TasklistPage implements OnInit {
   }
 
   ngOnInit() {
-    /* this.placesService.get2doList().subscribe((res) => {
-      console.log(res);
-
-      res.forEach((element) => {
-        let theNewTask = element['title'];
-        if (theNewTask !== '') {
-          this.tasks.push({ title: theNewTask, status: 'open' });
-        }
-      });
-    }); */
+    
   }
 
   addItem() {
