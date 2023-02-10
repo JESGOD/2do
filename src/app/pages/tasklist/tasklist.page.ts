@@ -17,8 +17,8 @@ export class TasklistPage implements OnInit {
   tasks: Array<Task> = [];
   /*  item: Array<Place> = [] */
   item: Place = {
-    title: '',
-    status: '',
+    title: 'ff',
+    status: 'open',
   };
   constructor(private placesService: PlacesService) {
     /*  this.placesService.get2doList().subscribe((res) => {
@@ -61,12 +61,14 @@ export class TasklistPage implements OnInit {
 
     this.tasks.forEach((element) => {
       console.log(element);
+      
     });
     let theNewTask: string | null = prompt('New task');
 
     if (theNewTask !== '') {
       this.tasks.push({ title: theNewTask, status: 'open' });
     }
+    
   }
 
   markAsDone(slidingItem: IonItemSliding, task: Task) {

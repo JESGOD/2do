@@ -16,7 +16,7 @@ export class PlacesService {
   }
 
   //inserta en la base de datos
-  addPlace(place: Place) {
+  addPlace(place:Place) {
     const notesRef = collection(this.firestore, '2do');
     return addDoc(notesRef, place);
   }
