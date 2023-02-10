@@ -15,7 +15,10 @@ import { Task } from './task';
 })
 export class TasklistPage implements OnInit {
   tasks: Array<Task> = [];
-  /*  item: Array<Place> = [] */
+  task:Task={
+    title: '',
+    status: '',
+  };
   item: Place = {
     title: 'ff',
     status: 'open',
@@ -58,7 +61,7 @@ export class TasklistPage implements OnInit {
   }
 
   addItem() {
-
+    
     this.tasks.forEach((element) => {
       console.log(element);
       
@@ -67,6 +70,8 @@ export class TasklistPage implements OnInit {
 
     if (theNewTask !== '') {
       this.tasks.push({ title: theNewTask, status: 'open' });
+      this.task = { title: theNewTask, status: 'open' };
+      this.placesService.addPlace(this.task);
     }
     
   }
@@ -98,6 +103,6 @@ export class TasklistPage implements OnInit {
   }
 
   onSubmit() {
-    this.placesService.addPlace(this.item);
+    /* this.placesService.addPlace(this.item); */
   }
 }
