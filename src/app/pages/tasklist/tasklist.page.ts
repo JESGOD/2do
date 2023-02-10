@@ -84,7 +84,7 @@ export class TasklistPage implements OnInit {
   }
 
   removeTask(slidingItem: IonItemSliding, task: Task) {
-    var t = task.title;
+    /* var t = task.title; */
     
     task.status = 'removed';
   
@@ -98,7 +98,9 @@ export class TasklistPage implements OnInit {
     }, 1);
 
     // eliminar item en la db
-    /* this.placesService.delete(t) */  
+    
+    
+     this.placesService.delete(task) 
    
   }
 

@@ -21,8 +21,9 @@ export class PlacesService {
     return addDoc(notesRef, task);
   }
 
-  delete(title :string) {
-    const itemRef = doc(this.firestore, title);
+  delete(task:Task) {
+    console.log(task);
+    const itemRef = doc(this.firestore,`2do/${task.title}`);
     return deleteDoc(itemRef);
   }
   /* addPlace(tasks: Array<Task> = []) {
