@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc } from 'firebase/firestore';
 import Place from 'src/interfaces/place.interface';
 
 @Injectable({
@@ -18,9 +18,13 @@ export class PlacesService {
   //inserta en la base de datos
   addPlace(place: Place) {
     const notesRef = collection(this.firestore, '2do');
-    return addDoc(notesRef, place)
-  } 
+    return addDoc(notesRef, place);
+  }
 
+  delete(title :string) {
+    const itemRef = doc(this.firestore, title);
+    return deleteDoc(itemRef);
+  }
   /* addPlace(tasks: Array<Task> = []) {
     const notesRef = collection(this.firestore, '2do');
     return addDoc(notesRef, tasks)

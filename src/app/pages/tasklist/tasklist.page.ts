@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IonItemSliding } from '@ionic/angular';
+import { deleteDoc, doc, Firestore } from 'firebase/firestore';
+import { title } from 'process';
+import { stringify } from 'querystring';
+import { elementAt } from 'rxjs';
 import { PlacesService } from 'src/app/services/places.service';
 import Place from 'src/interfaces/place.interface';
 import { Task } from './task';
@@ -21,21 +25,21 @@ export class TasklistPage implements OnInit {
       console.log(res);
       
     }); */
-    /* this.tasks = [
+    /*  this.tasks = [
       { title: 'Milk', status: 'open' },
       { title: 'Eggs', status: 'open' },
       { title: 'Syrup', status: 'open' },
       { title: 'Pancake Mix', status: 'open' },
-    ]; */
+    ];  */
 
     this.placesService.get2doList().subscribe((res) => {
       console.log(res);
-
+      this.tasks=[];
       res.forEach((element) => {
         let theNewTask = element['title'];
-        if (theNewTask !== '') {
+          if (theNewTask !== '') {
           this.tasks.push({ title: theNewTask, status: 'open' });
-        }
+        } 
       });
     });
   }
@@ -73,7 +77,11 @@ export class TasklistPage implements OnInit {
   }
 
   removeTask(slidingItem: IonItemSliding, task: Task) {
+    var t = task.title;
+    
     task.status = 'removed';
+  
+    
     let index = this.tasks.indexOf(task);
     if (index > -1) {
       this.tasks.splice(index, 1);
@@ -81,6 +89,10 @@ export class TasklistPage implements OnInit {
     setTimeout(() => {
       slidingItem.close();
     }, 1);
+
+    // eliminar item en la db
+    /* this.placesService.delete(t) */  
+   
   }
 
   onSubmit() {
